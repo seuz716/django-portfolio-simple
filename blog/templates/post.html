@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/" style="font-size: 24px; font-weight: bold;">Inicio</a>
+    </div>
+</div>
+
+    
+    <div class="container mt-5">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog:post_detail' post.id %}">
+                    <div class="card">
+                        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                            <p class="post-meta">
+                                Published by {{ post.author.username }} on {{ post.created_at }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <a href="{% url 'blog:pdf-viewer' %}">cuentos</a>
+            {% empty %}
+            <div class="col-md-8 offset-md-2">
+                <p>No posts found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+
+.post-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.post-content a:hover {
+    text-decoration: underline;
+}
+
+.post-content p:first-child {
+    margin-top: 0;
+}
+
+.post-content p:last-child {
+    margin-bottom: 0;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.img-fluid:hover {
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+}

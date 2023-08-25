@@ -1,0 +1,65 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">Cesar Andrés Abadía Dávila</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a class="btn btn-primary btn-sm" href="{% static 'portfolio/doc1.pdf' %}" target="_blank" rel="noopener noreferrer">
+            View cv
+          </a>
+          <a class="btn btn-primary btn-sm ms-2" href="{% static 'portfolio/doc1.pdf' %}" download>
+            Download cv
+          </a>
+        </li>   
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Animación para el botón de hamburguesa */
+  .navbar-toggler {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar-toggler[aria-expanded="true"] {
+    transform: rotate(90deg);
+  }
+
+  /* Efecto de desplazamiento suave */
+  .navbar-nav a.nav-link {
+    transition: color 0.3s ease-in-out;
+  }
+
+  .navbar-nav a.nav-link:hover {
+    color: #ffc107; /* Cambia el color al hacer hover */
+  }
+
+  /* Cambio de color en el menú activo */
+  .navbar-nav .nav-item.active .nav-link {
+    color: #17a2b8; /* Cambia el color de la sección activa */
+  }
+</style>
+
+<script>
+  // JavaScript para el desplazamiento suave
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+

@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+<div class="container-fluid bg-primary py-5">
+  <div class="row justify-content-center align-items-center" data-aos="fade-up">
+    <div class="col-md-4 text-center">
+      <img src="{% static 'portfolio/foto1.png' %}" alt="Foto de Adelis García" class="img-fluid rounded-circle shadow-lg" style="width: 200px; height: 200px;">
+    </div>
+    <div class="col-md-8 text-white">
+      <h1 class="display-4">¡Hola, soy Adelis García!</h1>
+      <p class="lead">Auxiliar Contable</p>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row row-cols-md-2">
+    <div class="col-md-6">
+      <div class="card mb-4 h-50" data-aos="fade-up">
+        <div class="card-body">
+          <h2 class="card-title">Acerca de Mí</h2>
+          <p class="card-text text-justify">
+            ¡Hola! Soy Adelis García, una apasionada auxiliar contable con un enfoque en la excelencia y precisión en mi trabajo. Mi formación en el Liceo Calimio Desepaz me brindó una base sólida en especialidad comercial, mientras que mi formación técnica en el CCED me equipó con habilidades específicas en contabilidad y finanzas.
+          </p>
+          <p class="card-text text-justify">
+            Mi pasión por los números y la atención meticulosa a los detalles me permiten contribuir en el área contable y financiera con confiabilidad y eficiencia. Busco oportunidades para aplicar mis habilidades en un entorno desafiante y dinámico, donde pueda continuar creciendo y aportando.
+          </p>
+        </div>
+      </div>
+      <div class="card mb-4 h-50" data-aos="fade-up">
+        <div class="card-body">
+          <h2 class="card-title">Habilidades y Aptitudes</h2>
+          <ul class="list-unstyled">
+            <li>Manejo avanzado de herramientas contables como Excel y software de contabilidad.</li>
+            <li>Análisis financiero y reconciliación de cuentas con alta precisión.</li>
+            <li>Atención meticulosa a los detalles y capacidad para trabajar bajo presión.</li>
+            <li>Comunicación efectiva y trabajo en equipo colaborativo.</li>
+            <li>Adaptabilidad y disposición para aprender nuevas tecnologías y métodos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-50" data-aos="fade-up">
+        <div class="card-body">
+          <h2 class="card-title">Contacto</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-phone me-2"></i>CELULAR: 3163760767</li>
+            <li><i class="bi bi-globe me-2"></i>SITIO WEB: adelis_garcia17</li>
+            <li><i class="bi bi-envelope me-2"></i>CORREO ELECTRÓNICO: adelisgarcia31@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mb-4 h-50" data-aos="fade-up">
+        <div class="card-body">
+          <h2 class="card-title">Datos Personales</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-calendar me-2"></i>Lugar y Fecha de Nacimiento: 10/10/2002, López de Micay-Cauca</li>
+            <li><i class="bi bi-person me-2"></i>Cédula de Ciudadanía: 1061112779 de Cali</li>
+            <li><i class="bi bi-heart me-2"></i>Estado Civil: Soltera</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card h-50" data-aos="fade-up">
+        <div class="card-body">
+          <h2 class="card-title">Educación</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-book me-2"></i>Liceo Calimio Desepaz - Bachiller Técnico con Especialidad Comercial</li>
+            <li><i class="bi bi-book me-2"></i>CCED (Centro de Capacitación y Educación Dirigida) - Técnico Laboral por Competencia en Auxiliar Contable y Financiero</li>
+            <li><i class="bi bi-book me-2"></i>INTENALCO - Tecnólogo en Gestión Contable y Tributaria (Actualmente)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Proyectos -->
+<div class="container mt-5">
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    <a href="{{ project.url }}" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <p>No se encontraron proyectos.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Fin de Proyectos -->
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+{% endblock %}
