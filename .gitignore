@@ -1,0 +1,19 @@
+# Archivos y directorios generados por Django
+__pycache__/
+*.pyc
+*.pyo
+*.db
+
+# Archivos de configuración local (pueden variar dependiendo de tus herramientas)
+.env
+*.env
+
+# Directorios de entorno virtual (pueden variar dependiendo de tus herramientas)
+venv/
+env/
+
+# Archivos y directorios de media (cargados por usuarios)
+media/
+
+# Archivos de dependencias de Node.js (si se usa en el proyecto)
+node_modules/
