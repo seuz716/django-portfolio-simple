@@ -1,19 +1,39 @@
-# Archivos y directorios generados por Django
+```
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
-*.db
-
-# Archivos de configuración local (pueden variar dependiendo de tus herramientas)
-.env
-*.env
-
-# Directorios de entorno virtual (pueden variar dependiendo de tus herramientas)
-venv/
+*.pyd
+.Python
 env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.DS_Store
+Thumbs.db
 
-# Archivos y directorios de media (cargados por usuarios)
-media/
-
-# Archivos de dependencias de Node.js (si se usa en el proyecto)
-node_modules/
+# Django
+*.pot
+*.py[co]
+*.mo
+*.pot
+*.po
+*~
+.pytest_cache/
+htmlcov/
+.coverage*
+```
