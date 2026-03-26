@@ -1,8 +1,20 @@
 ```
-# Environment variables
+# Test directories
+tests_new/
+frontend_refactor/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment files
 .env
 .env.local
-.env.*
+*.env.*
+
+# Editors
+.vscode/
+.idea/
 
 # Python
 __pycache__/
@@ -15,25 +27,45 @@ venv/
 .venv/
 pip-log.txt
 pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-.DS_Store
-Thumbs.db
 
-# Django
-*.pot
-*.py[co]
-*.mo
-*.pot
-*.po
-*~
-.pytest_cache/
+# Coverage
+.coverage
+coverage/
 htmlcov/
-.coverage*
+
+# Pytest
+.pytest_cache/
+pytest_debug.log
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```

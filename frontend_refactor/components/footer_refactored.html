@@ -1,0 +1,308 @@
+/**
+ * Componente de Footer Refactorizado
+ * 
+ * Mejoras implementadas:
+ * - Accesibilidad WCAG 2.1 AA
+ * - Iconos con etiquetas descriptivas
+ * - Enlaces de redes sociales accesibles
+ * - Información de contacto semántica
+ * - Estructura HTML5 correcta
+ */
+
+<footer class="footer mt-auto py-5 bg-dark text-white" role="contentinfo">
+  <div class="container text-center">
+    <!-- Copyright con año dinámico -->
+    <p class="mb-0 text-uppercase" aria-label="Información de derechos de autor">
+      Derechos de autor &copy; 
+      <time datetime="{% now 'Y' %}">{% now 'Y' %}</time> 
+      Cesar Andrés Abadía Dávila. 
+      Todos los derechos reservados.
+    </p>
+    
+    <!-- Información de contacto accesible -->
+    <p class="mb-0 mt-2">
+      Dirección de correo electrónico: 
+      <a href="mailto:info@ejemplo.com" class="text-white text-decoration-underline">
+        info@ejemplo.com
+      </a>
+    </p>
+    
+    <!-- Redes sociales con etiquetas descriptivas -->
+    <ul class="list-inline mt-4" role="list" aria-label="Enlaces a redes sociales">
+      <li class="list-inline-item mx-2">
+        <a 
+          href="https://facebook.com/tu_pagina" 
+          class="text-white text-decoration-none d-inline-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px;"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Síguenos en Facebook (abre en nueva pestaña)">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          <span class="visually-hidden">Facebook</span>
+        </a>
+      </li>
+      <li class="list-inline-item mx-2">
+        <a 
+          href="https://twitter.com/tu_usuario" 
+          class="text-white text-decoration-none d-inline-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px;"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Síguenos en Twitter (abre en nueva pestaña)">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+          <span class="visually-hidden">Twitter</span>
+        </a>
+      </li>
+      <li class="list-inline-item mx-2">
+        <a 
+          href="https://instagram.com/tu_usuario" 
+          class="text-white text-decoration-none d-inline-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px;"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Síguenos en Instagram (abre en nueva pestaña)">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+          <span class="visually-hidden">Instagram</span>
+        </a>
+      </li>
+    </ul>
+    
+    <!-- Enlaces adicionales opcionales -->
+    <nav aria-label="Enlaces legales" class="mt-3">
+      <ul class="list-inline">
+        <li class="list-inline-item mx-2">
+          <a href="/privacy-policy" class="text-white text-decoration-underline">
+            Política de Privacidad
+          </a>
+        </li>
+        <li class="list-inline-item mx-2">
+          <a href="/terms-of-service" class="text-white text-decoration-underline">
+            Términos de Servicio
+          </a>
+        </li>
+        <li class="list-inline-item mx-2">
+          <a href="/accessibility" class="text-white text-decoration-underline">
+            Accesibilidad
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<!-- FontAwesome para iconos legacy (si es necesario) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<style>
+  /* Variables para consistencia */
+  :root {
+    --footer-link-color: #ffffff;
+    --footer-link-hover-color: #ffc107;
+    --footer-transition-duration: 0.3s;
+    --focus-ring-color: #ffc107;
+    --focus-ring-width: 3px;
+    --focus-ring-offset: 2px;
+  }
+  
+  /* Estilos base para enlaces del footer */
+  .footer a {
+    transition: color var(--footer-transition-duration) ease-in-out,
+                transform var(--footer-transition-duration) ease-in-out;
+  }
+  
+  .footer a:hover,
+  .footer a:focus {
+    color: var(--footer-link-hover-color);
+    text-decoration: underline !important;
+  }
+  
+  /* Botones de redes sociales con efectos hover */
+  .footer .list-inline-item a {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color var(--footer-transition-duration) ease-in-out,
+                transform var(--footer-transition-duration) ease-in-out;
+  }
+  
+  .footer .list-inline-item a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+  
+  .footer .list-inline-item a:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Focus visible mejorado para accesibilidad */
+  .footer a:focus {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+  
+  .footer a:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  .footer a:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+  
+  /* Iconos centrados verticalmente */
+  .footer .fab {
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive: ajustar tamaños en móviles */
+  @media (max-width: 576px) {
+    .footer .list-inline-item {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer .list-inline-item a {
+      width: 48px !important;
+      height: 48px !important;
+    }
+    
+    .footer .fab {
+      font-size: 1.4rem;
+    }
+  }
+  
+  /* Respetar preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .footer a,
+    .footer .list-inline-item a {
+      transition: none !important;
+      animation: none !important;
+    }
+    
+    .footer .list-inline-item a:hover {
+      transform: none;
+    }
+  }
+  
+  /* Alto contraste para modo oscuro */
+  @media (prefers-contrast: high) {
+    .footer .list-inline-item a {
+      border: 2px solid #ffffff;
+    }
+    
+    .footer a:hover,
+    .footer a:focus {
+      background-color: #ffffff;
+      color: #000000 !important;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Módulo de footer accesible
+   * Maneja interacciones y actualiza año automáticamente
+   */
+  (function() {
+    'use strict';
+    
+    /**
+     * Actualiza el año en el copyright dinámicamente
+     */
+    function updateCopyrightYear() {
+      const timeElements = document.querySelectorAll('time[datetime]');
+      const currentYear = new Date().getFullYear().toString();
+      
+      timeElements.forEach(function(timeEl) {
+        if (timeEl.getAttribute('datetime') === currentYear) {
+          timeEl.textContent = currentYear;
+        }
+      });
+    }
+    
+    /**
+     * Añade indicador de enlace externo para accesibilidad
+     */
+    function addExternalLinkIndicators() {
+      const externalLinks = document.querySelectorAll('.footer a[target="_blank"]');
+      
+      externalLinks.forEach(function(link) {
+        // Verificar si ya tiene indicador
+        if (!link.querySelector('.visually-hidden')) {
+          const srText = document.createElement('span');
+          srText.className = 'visually-hidden';
+          srText.textContent = ' (abre en nueva pestaña)';
+          link.appendChild(srText);
+        }
+      });
+    }
+    
+    /**
+     * Maneja navegación por teclado en redes sociales
+     */
+    function setupKeyboardNavigation() {
+      const socialLinks = document.querySelectorAll('.footer [aria-label^="Síguenos"]');
+      
+      socialLinks.forEach(function(link, index) {
+        link.addEventListener('keydown', function(event) {
+          let targetIndex;
+          
+          switch(event.key) {
+            case 'ArrowRight':
+            case 'ArrowDown':
+              event.preventDefault();
+              targetIndex = (index + 1) % socialLinks.length;
+              socialLinks[targetIndex].focus();
+              break;
+              
+            case 'ArrowLeft':
+            case 'ArrowUp':
+              event.preventDefault();
+              targetIndex = (index - 1 + socialLinks.length) % socialLinks.length;
+              socialLinks[targetIndex].focus();
+              break;
+              
+            case 'Home':
+              event.preventDefault();
+              socialLinks[0].focus();
+              break;
+              
+            case 'End':
+              event.preventDefault();
+              socialLinks[socialLinks.length - 1].focus();
+              break;
+          }
+        });
+      });
+    }
+    
+    /**
+     * Inicialización cuando el DOM está listo
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCopyrightYear();
+      addExternalLinkIndicators();
+      setupKeyboardNavigation();
+    });
+    
+    /**
+     * Soporte para prefers-reduced-motion
+     */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    if (prefersReducedMotion.matches) {
+      // Deshabilitar animaciones si el usuario lo prefiere
+      const style = document.createElement('style');
+      style.textContent = `
+        .footer a,
+        .footer .list-inline-item a {
+          transition: none !important;
+          animation: none !important;
+        }
+        .footer .list-inline-item a:hover {
+          transform: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  })();
+</script>
