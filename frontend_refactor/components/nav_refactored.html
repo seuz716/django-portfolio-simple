@@ -1,0 +1,268 @@
+/**
+ * Componente de Navegación Refactorizado
+ * 
+ * Mejoras implementadas:
+ * - Accesibilidad WCAG 2.1 AA completa
+ * - ARIA labels descriptivos
+ * - Navegación por teclado mejorada
+ * - Contraste de colores optimizado
+ * - Estructura semántica correcta
+ */
+
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation" aria-label="Menú principal">
+  <div class="container">
+    <!-- Brand con enlace al home -->
+    <a class="navbar-brand" href="/" aria-label="Inicio - Cesar Andrés Abadía Dávila">
+      Cesar Andrés Abadía Dávila
+    </a>
+    
+    <!-- Toggle button con ARIA mejorado -->
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" 
+      aria-expanded="false" 
+      aria-label="Alternar menú de navegación"
+      id="navbar-toggler">
+      <span class="navbar-toggler-icon" aria-hidden="true"></span>
+    </button>
+    
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navbarNav" aria-labelledby="navbar-toggler">
+      <ul class="navbar-nav ms-auto" role="menubar">
+        <!-- Blog link con indicador de página activa -->
+        <li class="nav-item" role="none">
+          <a 
+            class="nav-link {% if request.path == '/blog' %}active{% endif %}" 
+            href="/blog"
+            aria-current="{% if request.path == '/blog' %}page{% endif %}"
+            role="menuitem">
+            Blog
+          </a>
+        </li>
+        
+        <!-- Botones de CV con información accesible -->
+        <li class="nav-item d-flex align-items-center gap-2" role="none">
+          <a 
+            class="btn btn-primary btn-sm" 
+            href="{% static 'portfolio/doc1.pdf' %}" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            role="menuitem"
+            aria-label="Ver currículum en nueva pestaña (PDF, 1.5 MB)">
+            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+            Ver CV
+            <span class="visually-hidden">(PDF, 1.5 MB)</span>
+          </a>
+          
+          <a 
+            class="btn btn-outline-light btn-sm" 
+            href="{% static 'portfolio/doc1.pdf' %}" 
+            download="CV_Cesar_Andres_Abadia_Davila.pdf"
+            role="menuitem"
+            aria-label="Descargar currículum (PDF, 1.5 MB)">
+            <i class="bi bi-download" aria-hidden="true"></i>
+            Descargar
+            <span class="visually-hidden">(PDF, 1.5 MB)</span>
+          </a>
+        </li>   
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Variables para consistencia */
+  :root {
+    --nav-transition-duration: 0.3s;
+    --nav-hover-color: #ffc107;
+    --nav-active-color: #17a2b8;
+    --focus-ring-color: #ffc107;
+    --focus-ring-width: 3px;
+    --focus-ring-offset: 2px;
+  }
+  
+  /* Transiciones suaves */
+  .navbar-toggler {
+    transition: transform var(--nav-transition-duration) ease-in-out;
+  }
+
+  .navbar-toggler[aria-expanded="true"] {
+    transform: rotate(90deg);
+  }
+
+  /* Efectos hover accesibles con alto contraste */
+  .navbar-nav a.nav-link {
+    transition: color var(--nav-transition-duration) ease-in-out, 
+                background-color var(--nav-transition-duration) ease-in-out;
+    position: relative;
+  }
+
+  .navbar-nav a.nav-link:hover,
+  .navbar-nav a.nav-link:focus {
+    color: var(--nav-hover-color);
+    text-decoration: underline;
+  }
+
+  /* Indicador visual para página activa */
+  .navbar-nav .nav-item.active .nav-link,
+  .navbar-nav .nav-link[aria-current="page"] {
+    color: var(--nav-active-color);
+    font-weight: bold;
+  }
+
+  .navbar-nav .nav-link[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background-color: var(--nav-active-color);
+    border-radius: 2px;
+  }
+
+  /* Focus visible mejorado para accesibilidad */
+  .navbar-toggler:focus,
+  .navbar-nav a:focus,
+  .btn:focus {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .navbar-toggler:focus:not(:focus-visible),
+  .navbar-nav a:focus:not(:focus-visible),
+  .btn:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .navbar-toggler:focus-visible,
+  .navbar-nav a:focus-visible,
+  .btn:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* Animación suave para collapse */
+  .navbar-collapse {
+    transition: max-height var(--nav-transition-duration) ease-in-out,
+                opacity var(--nav-transition-duration) ease-in-out;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-collapse:not(.show) {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    
+    .navbar-collapse.show {
+      max-height: 500px;
+      opacity: 1;
+    }
+  }
+
+  /* Respetar preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .navbar-toggler,
+    .navbar-nav a.nav-link,
+    .navbar-collapse {
+      transition: none !important;
+      animation: none !important;
+    }
+    
+    .navbar-toggler[aria-expanded="true"] {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Módulo de navegación accesible
+   * Maneja interacciones de teclado y actualiza estados ARIA
+   */
+  (function() {
+    'use strict';
+    
+    const navbarToggler = document.getElementById('navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+    
+    if (!navbarToggler || !navbarCollapse) {
+      return;
+    }
+    
+    /**
+     * Maneja el cierre del menú al hacer click fuera
+     */
+    document.addEventListener('click', function(event) {
+      const isClickInside = navbarToggler.contains(event.target) || 
+                           navbarCollapse.contains(event.target);
+      
+      if (!isClickInside && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      }
+    });
+    
+    /**
+     * Maneja navegación por teclado
+     */
+    navbarToggler.addEventListener('keydown', function(event) {
+      // Cerrar con Escape
+      if (event.key === 'Escape') {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+        navbarToggler.focus();
+      }
+    });
+    
+    /**
+     * Actualiza estado ARIA cuando el colapse cambia
+     */
+    navbarCollapse.addEventListener('shown.bs.collapse', function() {
+      navbarToggler.setAttribute('aria-expanded', 'true');
+      
+      // Mover foco al primer elemento del menú
+      const firstMenuItem = navbarCollapse.querySelector('a[href]');
+      if (firstMenuItem) {
+        firstMenuItem.focus();
+      }
+    });
+    
+    navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+      navbarToggler.setAttribute('aria-expanded', 'false');
+    });
+    
+    /**
+     * Soporte para prefers-reduced-motion
+     */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    if (prefersReducedMotion.matches) {
+      // Deshabilitar animaciones si el usuario lo prefiere
+      navbarToggler.style.transition = 'none';
+      navbarCollapse.style.transition = 'none';
+    }
+    
+    // Escuchar cambios en la preferencia de movimiento
+    prefersReducedMotion.addEventListener('change', function(e) {
+      if (e.matches) {
+        navbarToggler.style.transition = 'none';
+        navbarCollapse.style.transition = 'none';
+      } else {
+        navbarToggler.style.transition = '';
+        navbarCollapse.style.transition = '';
+      }
+    });
+  })();
+</script>

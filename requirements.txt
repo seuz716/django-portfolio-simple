@@ -1,0 +1,26 @@
+# Django Framework - Security patched version
+Django>=4.2.18,<5.0
+
+# Environment variables management
+django-environ==0.11.2
+
+# Static file serving with compression
+whitenoise==6.6.0
+
+# Rate limiting protection
+django-ratelimit==4.1.0
+
+# CORS headers (if API is exposed)
+django-cors-headers==4.3.1
+
+# Security headers
+django-csp==3.8
+
+# PostgreSQL adapter (recommended for production)
+psycopg2-binary==2.9.9
+
+# Pillow for image processing
+Pillow==10.2.0
+
+# Python security utilities
+bandit==1.7.5
